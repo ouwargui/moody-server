@@ -8,13 +8,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  email     String   @unique
-  password  String
-  profile   Profile? @relation("UserHasProfile")
+  firebaseId String   @unique
+  profile    Profile? @relation("UserHasProfile")
 }
 
 model Profile {
@@ -29,7 +28,6 @@ model Profile {
   friends           Friend[]  @relation("SourceFriendsUser")
   friendsOf         Friend[]  @relation("TargetFriendsUser")
   posts             Post[]    @relation("UserAuthorsPosts")
-  postsSharedWithMe Post[]    @relation("PostSharedWithUsers")
 }
 
 model Friend {
@@ -54,5 +52,4 @@ model Post {
   emoji      String    @db.VarChar(1)
   author     Profile   @relation("UserAuthorsPosts", fields: [authorId], references: [id])
   authorId   Int
-  sharedWith Profile[] @relation("PostSharedWithUsers")
 }

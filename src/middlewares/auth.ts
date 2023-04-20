@@ -8,19 +8,21 @@ export async function authenticateUser(
 ) {
   const token = req.headers.authorization?.split(' ')[1];
 
-  if (!token) {
-    throw new Error('Invalid token');
-  }
+  next();
 
-  try {
-    const decodedToken = await authApp.verifyIdToken(token);
+  // if (!token) {
+  //   throw new Error('Invalid token');
+  // }
 
-    if (!decodedToken) {
-      throw new Error('Invalid token');
-    }
+  // try {
+  //   const decodedToken = await authApp.verifyIdToken(token);
 
-    next();
-  } catch (error) {
-    throw new Error('Invalid token');
-  }
+  //   if (!decodedToken) {
+  //     throw new Error('Invalid token');
+  //   }
+
+  //   next();
+  // } catch (error) {
+  //   throw new Error('Invalid token');
+  // }
 }

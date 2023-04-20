@@ -1,10 +1,10 @@
 import {Router} from 'express';
 import {authenticateUser} from '../middlewares/auth';
 import {Middleware} from '../protocols/middleware';
-import {loginRoutes} from './login.routes';
+import {userRoutes} from './user.routes';
 
 const routes = Router();
 
-routes.use('/login', Middleware(authenticateUser), loginRoutes);
+routes.use('/user', Middleware(authenticateUser), userRoutes);
 
 export {routes};

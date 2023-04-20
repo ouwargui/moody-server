@@ -7,8 +7,6 @@ export default (app: Express): void => {
   app.use('/api/v1', router);
 
   FastGlob.sync(['**/src/routes/**routes.ts']).map(
-    async (file) =>
-      // @ts-ignore
-    (await import(`../../${file}`)).default(router), // eslint-disable-line
+    async (file) => (await import(`../../${file}`)).default(router), // eslint-disable-line
   );
 };
